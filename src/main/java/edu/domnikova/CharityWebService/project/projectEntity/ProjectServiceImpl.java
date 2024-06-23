@@ -51,4 +51,21 @@ public class ProjectServiceImpl implements ProjectService{
     public boolean ProjectWithTitleExist(Title title) {
         return repository.existsByTitle(title);
     }
+
+    @Override
+    public Project editBook(ProjectId projectId, EditProjectParameters editProjectParameters) {
+        var project = repository
+                .findById(projectId)
+                .orElseThrow(() -> new ProjectNotFoundException(projectId));
+        if (editProjectParameters.getVersion() != project.getVersion()) {
+            throw new ObjectOptimisticLockingFailureException(Project.class, project.getId().asString());
+        }
+        editProjectParameters.update(project);
+        return project;
+    }
+
+    @Override
+    public void deleteBook(ProjectId projectId) {
+        repository.deleteById(projectId);
+    }
 }

@@ -12,4 +12,6 @@ public interface ProjectService {
     Optional<Project> getBook(ProjectId projectId);
     ImmutableSet<Project> getAllBooks();
     boolean ProjectWithTitleExist(Title title);
+    Project editBook(ProjectId projectId, EditProjectParameters editProjectParameters);
+    void deleteBook(ProjectId projectId);
 }
