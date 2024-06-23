@@ -9,4 +9,7 @@ import java.util.Optional;
 public interface ProjectService {
     Project createProject(CreateProjectParameters parameters);
     Page<Project> getProjects(Pageable pageable);
+    Optional<Project> getBook(ProjectId projectId);
+    ImmutableSet<Project> getAllBooks();
+    boolean ProjectWithTitleExist(Title title);
 }

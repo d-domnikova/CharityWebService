@@ -36,4 +36,19 @@ public class ProjectServiceImpl implements ProjectService{
     public Page<Project> getProjects(Pageable pageable) {
         return repository.findAll(pageable);
     }
+
+    @Override
+    public Optional<Project> getBook(ProjectId projectId) {
+        return repository.findById(projectId);
+    }
+
+    @Override
+    public ImmutableSet<Project> getAllBooks() {
+        return null;
+    }
+
+    @Override
+    public boolean ProjectWithTitleExist(Title title) {
+        return repository.existsByTitle(title);
+    }
 }

@@ -7,4 +7,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public interface ProjectRepository extends CrudRepository<Project, ProjectId>,
                                             PagingAndSortingRepository<Project, ProjectId>, ProjectRepositoryCustom {
+    boolean existsByTitle(Title title);
 }
