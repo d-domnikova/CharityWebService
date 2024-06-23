@@ -1,4 +1,4 @@
-package edu.domnikova.CharityWebService.project;
+package edu.domnikova.CharityWebService.project.projectEntity;
 
 import jakarta.persistence.Embeddable;
 import org.springframework.util.Assert;

@@ -1,4 +1,4 @@
-package edu.domnikova.CharityWebService.project;
+package edu.domnikova.CharityWebService.project.projectEntity;
 
 public interface ProjectRepositoryCustom {
     ProjectId nextId();

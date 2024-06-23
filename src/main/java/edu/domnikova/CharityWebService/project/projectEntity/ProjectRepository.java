@@ -1,4 +1,4 @@
-package edu.domnikova.CharityWebService.project;
+package edu.domnikova.CharityWebService.project.projectEntity;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;

@@ -1,4 +1,5 @@
-package edu.domnikova.CharityWebService.project;
+package edu.domnikova.CharityWebService.project.projectEntity;
+
 public class CreateProjectParameters {
     private final Title title;
     private final User createdBy;

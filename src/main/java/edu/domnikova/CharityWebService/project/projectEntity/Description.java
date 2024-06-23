@@ -1,4 +1,4 @@
-package edu.domnikova.CharityWebService.project;
+package edu.domnikova.CharityWebService.project.projectEntity;
 
 import org.springframework.util.Assert;
 import org.testcontainers.shaded.com.google.common.base.MoreObjects;

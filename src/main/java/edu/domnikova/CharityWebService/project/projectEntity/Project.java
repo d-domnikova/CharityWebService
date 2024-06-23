@@ -1,4 +1,4 @@
-package edu.domnikova.CharityWebService.project;
+package edu.domnikova.CharityWebService.project.projectEntity;
 
 import io.github.wimdeblauwe.jpearl.AbstractVersionedEntity;
 import jakarta.persistence.*;

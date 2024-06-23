@@ -1,9 +1,13 @@
-package edu.domnikova.CharityWebService.project;
+package edu.domnikova.CharityWebService.project.projectEntity;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.testcontainers.shaded.com.google.common.collect.ImmutableSet;
+
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -29,7 +33,7 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Override
-    public Page<Project> getBooks(Pageable pageable) {
+    public Page<Project> getProjects(Pageable pageable) {
         return repository.findAll(pageable);
     }
 }

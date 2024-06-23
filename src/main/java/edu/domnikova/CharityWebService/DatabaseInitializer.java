@@ -1,7 +1,7 @@
 package edu.domnikova.CharityWebService;
 
 import com.github.javafaker.Faker;
-import edu.domnikova.CharityWebService.project.*;
+import edu.domnikova.CharityWebService.project.projectEntity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
