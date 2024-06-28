@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}"
+      th:with="activeMenuItem='homePage'">
+<body>
+<div layout:fragment="page-content">
+    <!-- Add content here -->
+    <!--/*@thymesVar id="projects" type="edu.domnikova.CharityWebService.project.projectEntity.Project"*/-->
+    <th:block th:each="project : ${projects}" >
+        <div th:replace="~{fragments/projectComponent :: card(project)}">Project info</div>
+    </th:block>
+</div>
+<th:block layout:fragment="page-scripts">
+</th:block>
+</body>
+</html>

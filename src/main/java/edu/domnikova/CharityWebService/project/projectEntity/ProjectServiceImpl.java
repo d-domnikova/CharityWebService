@@ -38,12 +38,12 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Override
-    public Optional<Project> getBook(ProjectId projectId) {
+    public Optional<Project> getProject(ProjectId projectId) {
         return repository.findById(projectId);
     }
 
     @Override
-    public ImmutableSet<Project> getAllBooks() {
+    public ImmutableSet<Project> getAllProject() {
         return null;
     }
 
@@ -53,7 +53,7 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Override
-    public Project editBook(ProjectId projectId, EditProjectParameters editProjectParameters) {
+    public Project editProject(ProjectId projectId, EditProjectParameters editProjectParameters) {
         var project = repository
                 .findById(projectId)
                 .orElseThrow(() -> new ProjectNotFoundException(projectId));
@@ -65,7 +65,7 @@ public class ProjectServiceImpl implements ProjectService{
     }
 
     @Override
-    public void deleteBook(ProjectId projectId) {
+    public void deleteProject(ProjectId projectId) {
         repository.deleteById(projectId);
     }
 }

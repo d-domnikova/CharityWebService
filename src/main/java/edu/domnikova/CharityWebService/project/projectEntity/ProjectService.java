@@ -9,9 +9,9 @@ import java.util.Optional;
 public interface ProjectService {
     Project createProject(CreateProjectParameters parameters);
     Page<Project> getProjects(Pageable pageable);
-    Optional<Project> getBook(ProjectId projectId);
-    ImmutableSet<Project> getAllBooks();
+    Optional<Project> getProject(ProjectId projectId);
+    ImmutableSet<Project> getAllProject();
     boolean ProjectWithTitleExist(Title title);
-    Project editBook(ProjectId projectId, EditProjectParameters editProjectParameters);
-    void deleteBook(ProjectId projectId);
+    Project editProject(ProjectId projectId, EditProjectParameters editProjectParameters);
+    void deleteProject(ProjectId projectId);
 }
