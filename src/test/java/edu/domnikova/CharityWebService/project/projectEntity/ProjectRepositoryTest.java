@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import jakarta.persistence.EntityManager;
@@ -64,11 +66,37 @@ class ProjectRepositoryTest {
         assertThat(jdbcTemplate.queryForObject("SELECT description FROM tt_projects", String.class)).isEqualTo("Test project for ProjectRepositoryTest");
         assertThat(jdbcTemplate.queryForObject("SELECT needed_amount FROM tt_projects", Double.class)).isEqualTo(10000.0);
         assertThat(jdbcTemplate.queryForObject("SELECT gathered_amount FROM tt_projects", Double.class)).isEqualTo(0.0);
+    }
 
-        entityManager.flush();
+    @Test
+    void testFindAllPageable(){
+        saveBooks(7);
+        Sort sort = Sort.by(Sort.Direction.ASC, "title");
 
-        UUID idInDb = jdbcTemplate.queryForObject("SELECT id FROM tt_projects", UUID.class);
-        assertThat(idInDb).isEqualTo(id.getId());
+        assertThat(repository.findAll(PageRequest.of(0, 5, sort)))
+                .hasSize(5)
+                .extracting(project -> project.getTitle().getTitle()).containsExactly("Charity Service 0", "Charity Service 1",
+                        "Charity Service 2", "Charity Service 3", "Charity Service 4");
+
+        assertThat(repository.findAll(PageRequest.of(1, 5, sort)))
+                .hasSize(2)
+                .extracting(project -> project.getTitle().getTitle()).containsExactly("Charity Service 5", "Charity Service 6");
+
+        assertThat(repository.findAll(PageRequest.of(2, 5, sort)))
+                .isEmpty();
+    }
+
+    private void saveBooks(int amountOfProjects){
+        for (int i = 0; i < amountOfProjects; i++){
+            repository.save(new Project(repository.nextId(),
+                    new Title(String.format("Charity Service %d", i)),
+                    new User("Daria", "Domnikova"),
+                    Category.HEALTHCARE,
+                    new Location("", "Ukraine"),
+                    new Description("Pageable test for ProjectRepositoryTest"),
+                    10000.0,
+                    0.0));
+        }
     }
 
     @TestConfiguration

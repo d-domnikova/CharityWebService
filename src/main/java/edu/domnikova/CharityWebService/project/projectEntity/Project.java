@@ -1,8 +1,12 @@
 package edu.domnikova.CharityWebService.project.projectEntity;
 
+import edu.domnikova.CharityWebService.donation.donationEntity.Donation;
 import io.github.wimdeblauwe.jpearl.AbstractVersionedEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "tt_projects")
@@ -12,7 +16,6 @@ public class Project extends AbstractVersionedEntity<ProjectId> {
     private Title title;
     @NotNull
     private User createdBy;
-    @NotNull
     @Enumerated(EnumType.STRING)
     private Category category;
     @NotNull
@@ -22,7 +25,6 @@ public class Project extends AbstractVersionedEntity<ProjectId> {
     private Description description;
     @NotNull
     private Double neededAmount;
-    @NotNull
     private Double gatheredAmount;
 
     protected Project() {
