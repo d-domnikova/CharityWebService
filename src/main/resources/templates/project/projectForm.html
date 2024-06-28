@@ -1,0 +1,84 @@
+<!-- tag::full[] -->
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layouts/layout}" lang="en"
+        th:with="activeMenuItem='project'">
+<head>
+    <title>Project</title>
+</head>
+<body>
+<div layout:fragment="page-content">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        <h1 class="text-2xl font-semibold text-gray-900"
+            th:text="${editMode?.name() == 'UPDATE'}?#{projects.edit}:#{projects.create}">Create project</h1>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+        <div class="py-4">
+            <div class="bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6">
+                <form id="user-form"
+                      th:object="${project}"
+                      th:action="${editMode?.name()=='UPDATE'}?@{/projects/{id}(id=${project.id})}:@{/projects/create}"
+                      method="post">
+                    <div>
+                        <div th:replace="fragments/forms :: fielderrors"></div>
+                        <div class="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
+                            <input type="hidden" th:field="*{version}" th:if="${editMode?.name() == 'UPDATE'}">
+                            <input type="hidden" th:field="*{firstName}" th:value="${editMode?.name() == 'UPDATE'}? 'projects.firstName':'Daria'">
+                            <input type="hidden" th:field="*{lastName}" th:value="${editMode?.name() == 'UPDATE'}? 'projects.firstName':'Domnikova'">
+
+
+                            <div th:replace="~{fragments/forms :: textinput(#{projects.title}, 'title', 'sm:col-span-3')}"></div>
+                            <div th:replace="~{fragments/forms :: selectInput(#{projects.category}, 'Category', ${categories}, 'sm:col-span-6')}"></div>
+                            <div th:replace="~{fragments/forms :: textinput(#{projects.city}, 'city', 'sm:col-span-3')}"></div>
+                            <div th:replace="~{fragments/forms :: textinput(#{projects.country}, 'country', 'sm:col-span-3')}"></div>
+
+                            <div class="sm:col-span-6">
+                                <label for="description" class="block text-sm font-bold text-gray-700"
+                                       th:text="#{projects.description}">
+                                    Description
+                                </label>
+                                <div class="mt-1 relative rounded-md shadow-sm">
+                                    <textarea id="description"
+                                              th:field="*{description}"
+                                              rows="5"
+                                              class="shadow-sm block w-full lg:w-4/5 sm:text-sm border-gray-300 rounded-md"
+                                              th:classappend="${#fields.hasErrors('description')?'border-red-300 focus:border-red-300 focus:ring-red-500':'focus:ring-purple-500 focus:border-purple-500'}"></textarea>
+                                </div>
+                                <p th:if="${#fields.hasErrors('description')}"
+                                   th:text="${#strings.listJoin(#fields.errors('description'), ' ')}"
+                                   class="mt-2 text-sm text-red-600" id="description-error">Description validation error message(s).</p>
+                            </div>
+                            </div>
+                            <div th:replace="~{fragments/forms :: textinput(#{projects.neededAmount}, 'neededAmount', 'sm:col-span-3')}"></div>
+
+                        <input type="hidden" th:field="*{gatheredAmount}" value=0>
+
+                            <div class="sm:col-span-2"></div>
+                        </div>
+                    </div>
+                    <div class="mt-8 border-t border-gray-200 pt-5">
+                        <div class="flex justify-end">
+                            <span class="inline-flex rounded-md shadow-sm">
+                                <a th:href="@{'/'}"
+                                   class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                                   th:text="#{cancel}">
+                                    Cancel
+                                </a>
+                            </span>
+                            <span class="ml-3 inline-flex rounded-md shadow-sm">
+                                <button type="submit"
+                                        class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500"
+                                        th:text="${editMode?.name() == 'UPDATE'}?#{save}:#{create}">>
+                                    Save
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<th th:fragment="header(title)"
+    th:with="hideOnMobile=${hideOnMobile?:false}"
+    class="px-6 py-3 border-b border-slate-200 bg-slate-50 text-left text-xs leading-4 font-medium text-slate-500 uppercase tracking-wider"
+    th:classappend="${hideOnMobile?'hidden sm:table-cell':''}"
+    th:text="${title}">Header title</th>
+
+<td th:fragment="data(contents)"
+    th:with="primary=${primary?:false},hideOnMobile=${hideOnMobile?:false}"
+    class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-slate-500"
+    th:classappend="|${primary?'font-medium text-slate-900':''} ${hideOnMobile?'hidden sm:table-cell':''}|"
+    th:text="${contents}">Table data contents</td>
+
+<td th:fragment="dataWithLink(linkText, linkUrl)"
+    class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+    <a th:href="${linkUrl}"
+       th:text="${linkText}"
+       class="text-white bg-sky-500 px-4 py-2 rounded-md hover:bg-sky-700">Edit</a>
+</td>
+</html>

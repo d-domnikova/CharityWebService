@@ -16,7 +16,6 @@ public class CreateProjectFromData {
     @NotBlank
     @Size(min = 3, max = 150, groups = ProjectValidationGroupOne.class)
     private String lastName;
-    @NotNull
     private Category category;
     private String city;
     @NotBlank
@@ -26,7 +25,6 @@ public class CreateProjectFromData {
     private String description;
     @NotBlank(groups = ProjectValidationGroupOne.class)
     private Double neededAmount;
-    @NotBlank(groups = ProjectValidationGroupOne.class)
     private Double gatheredAmount;
 
     public String getTitle() {
