@@ -58,7 +58,7 @@ public class ProjectController {
         return "project/projectForm";
     }
 
-    @PostMapping("/{id}/edit")
+    @PostMapping("/{id}")
     public String editTeamMember(@PathVariable("id") ProjectId projectId,
                                  @Validated(EditProjectValidationGroupSequence.class)
                                  @ModelAttribute("project") EditProjectFromData formData,

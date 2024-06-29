@@ -1,11 +1,12 @@
 package edu.domnikova.CharityWebService.project.projectEntity;
 
-import edu.domnikova.CharityWebService.donation.donationEntity.Donation;
 import io.github.wimdeblauwe.jpearl.AbstractVersionedEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -36,8 +37,7 @@ public class Project extends AbstractVersionedEntity<ProjectId> {
                    Category category,
                    Location location,
                    Description description,
-                   Double neededAmount,
-                   Double gatheredAmount) {
+                   Double neededAmount) {
         super(id);
         this.title = title;
         this.createdBy = createdBy;
@@ -45,7 +45,7 @@ public class Project extends AbstractVersionedEntity<ProjectId> {
         this.location = location;
         this.description = description;
         this.neededAmount = neededAmount;
-        this.gatheredAmount = gatheredAmount;
+        this.gatheredAmount = 0.0;
     }
 
     public Title getTitle() {
@@ -65,7 +65,7 @@ public class Project extends AbstractVersionedEntity<ProjectId> {
     }
 
     public Category getCategory() {
-        return category;
+        return Optional.ofNullable(category).orElse(Category.UNCATEGORIZED);
     }
 
     public void setCategory(Category category) {

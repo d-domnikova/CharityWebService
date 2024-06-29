@@ -15,8 +15,6 @@ public class User {
     }
 
     public User(String firstName, String lastName) {
-        Assert.hasText(firstName, "First name cannot be blank");
-        Assert.hasText(lastName, "Last name cannot be blank");
         this.firstName = firstName;
         this.lastName = lastName;
     }

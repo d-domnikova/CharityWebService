@@ -27,8 +27,7 @@ public class ProjectServiceImpl implements ProjectService{
                 parameters.getCategory(),
                 parameters.getLocation(),
                 parameters.getDescription(),
-                parameters.getNeededAmount(),
-                parameters.getGatheredAmount());
+                parameters.getNeededAmount());
         return repository.save(project);
     }
 

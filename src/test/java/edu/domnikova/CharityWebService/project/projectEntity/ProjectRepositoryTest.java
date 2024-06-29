@@ -51,8 +51,7 @@ class ProjectRepositoryTest {
                 Category.HEALTHCARE,
                 new Location("", "Ukraine"),
                 new Description("Test project for ProjectRepositoryTest"),
-                10000.0,
-                0.0));
+                10000.0));
 
         entityManager.flush();
 
@@ -94,8 +93,7 @@ class ProjectRepositoryTest {
                     Category.HEALTHCARE,
                     new Location("", "Ukraine"),
                     new Description("Pageable test for ProjectRepositoryTest"),
-                    10000.0,
-                    0.0));
+                    10000.0));
         }
     }
 

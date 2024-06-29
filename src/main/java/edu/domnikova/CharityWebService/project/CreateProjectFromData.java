@@ -2,6 +2,7 @@ package edu.domnikova.CharityWebService.project;
 
 import edu.domnikova.CharityWebService.project.projectEntity.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -10,20 +11,19 @@ public class CreateProjectFromData {
     @NotBlank
     @Size(min = 3, max = 150, groups = ProjectValidationGroupOne.class)
     private String title;
-    @NotBlank
-    @Size(min = 3, max = 150, groups = ProjectValidationGroupOne.class)
+    @NotNull
     private String firstName;
-    @NotBlank
-    @Size(min = 3, max = 150, groups = ProjectValidationGroupOne.class)
+    @NotNull
     private String lastName;
     private Category category;
     private String city;
     @NotBlank
     @Size(min = 3, max = 150, groups = ProjectValidationGroupOne.class)
     private String country;
-    @NotBlank(groups = ProjectValidationGroupOne.class)
+    @NotBlank
+    @Size(min = 15, groups = ProjectValidationGroupOne.class)
     private String description;
-    @NotBlank(groups = ProjectValidationGroupOne.class)
+    @NotNull(groups = ProjectValidationGroupOne.class)
     private Double neededAmount;
     private Double gatheredAmount;
 
